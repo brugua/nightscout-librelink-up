@@ -109,3 +109,4 @@ docker-compose.yml
 # IntelliJ configuration
 /.idea/
 /dev/
+/src/config.ts

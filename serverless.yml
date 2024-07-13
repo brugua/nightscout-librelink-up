@@ -1,0 +1,26 @@
+service: nightscout-librelink-up
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: dev
+
+functions:
+  myFunction:
+    handler: src/index.handler
+    events:
+      - http:
+          path: start
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+package:
+  patterns:
+    - 'node_modules/**'
+    - '!src/**/*.ts'
+    - 'dist/**'
+    - 'handler.js'

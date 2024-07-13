@@ -14,12 +14,12 @@
   "env": {
     "LINK_UP_USERNAME": {
       "description": "Your LibreLinkUp (LibreView) username/email address",
-      "value": "",
+      "value": "bguarany@ons.org.br",
       "required": true
     },
     "LINK_UP_PASSWORD": {
       "description": "Your LibreLinkUp (LibreView)",
-      "value": "",
+      "value": "Senhadiabetes01",
       "required": true
     },
     "LINK_UP_CONNECTION": {
@@ -34,22 +34,22 @@
     },
     "LINK_UP_REGION": {
       "description": "Your region. Used to determine the correct LibreLinkUp service (Possible values: AE, AP, AU, CA, DE, EU2, EU2, FR, JP, US)",
-      "value": "EU",
+      "value": "AE",
       "required": false
     },
     "NIGHTSCOUT_URL": {
       "description": "Your Nightscout URL",
-      "value": "",
+      "value": "nightscount-bruno.fly.dev",
       "required": true
     },
     "NIGHTSCOUT_API_TOKEN": {
       "description": "Your Nightscout API token",
-      "value": "",
+      "value": "9487b4b4c301c40a4aff7735c9918af60428505e",
       "required": true
     },
     "NIGHTSCOUT_DISABLE_HTTPS": {
       "description": "Disables the HTTPS requirement for Nightscout URLs",
-      "value": "",
+      "value": "true",
       "required": false
     },
     "LOG_LEVEL": {

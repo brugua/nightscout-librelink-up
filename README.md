@@ -46,12 +46,12 @@ To start the process simply create a bash script with the set environment variab
 
 ```shell
 #!/bin/bash
-export LINK_UP_USERNAME="mail@example.com"
-export LINK_UP_PASSWORD="mypassword"
+export LINK_UP_USERNAME="bguarany@ons.org.br"
+export LINK_UP_PASSWORD="Senhadiabetes01"
 export LINK_UP_TIME_INTERVAL="5"
-export NIGHTSCOUT_URL="nightscout.yourdomain.com"
+export NIGHTSCOUT_URL="nightscount-bruno.fly.dev"
 # use `shasum` instead of `sha1sum` on Mac
-export NIGHTSCOUT_API_TOKEN=$(echo -n "librelinku-123456789abcde" | sha1sum | cut -d ' ' -f 1)
+export NIGHTSCOUT_API_TOKEN=$(echo -n "sub-a7287f3c493a4c9c" | sha1sum | cut -d ' ' -f 1)
 export LOG_LEVEL="info"
 
 npm start

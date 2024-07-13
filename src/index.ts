@@ -4,8 +4,9 @@
  *
  * SPDX-License-Identifier: MIT
  */
+import { APIGatewayProxyHandler } from 'aws-lambda';
 import {LLU_API_ENDPOINTS} from "./constants/llu-api-endpoints";
-import * as cron from "node-cron";
+//import * as cron from "node-cron";
 import axios from "axios";
 import {createLogger, format, transports} from "winston";
 import {LoginResponse} from "./interfaces/librelink/login-response";
@@ -98,21 +99,99 @@ const libreLinkUpHttpHeaders: LibreLinkUpHttpHeaders = {
     "product": LIBRE_LINK_UP_PRODUCT
 }
 
-if (config.singleShot)
-{
-    main().then();
-}
-else
-{
-    const schedule = `*/${config.linkUpTimeInterval} * * * *`;
-    logger.info("Starting cron schedule: " + schedule)
-    cron.schedule(schedule, () =>
-    {
-        main().then()
-    }, {});
+import * as https from 'https';
+import { IncomingMessage } from 'http'; // Importa o tipo corretamente
+
+export const handler = async (event: any): Promise<any> => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            
+            await main();
+            resolve({
+                statusCode: 200,
+                body: JSON.stringify('Executou com sucesso!')
+            });
+
+        } catch (e : any) {
+            reject({
+                statusCode: 500,
+                body: JSON.stringify(`Erro ao executar: ${e.message}`)
+            });
+        }
+        
+    });
 }
 
-async function main(): Promise<void>
+        /*https.get('https://www.google.com', (res: IncomingMessage) => {
+            let data = '';
+
+            res.on('data', chunk => {
+                data += chunk;
+            });
+
+            res.on('end', () => {
+                if (res.statusCode === 200) {
+                    resolve({
+                        statusCode: 200,
+                        body: JSON.stringify('Lambda function has internet access.')
+                    });
+                } else {
+                    reject({
+                        statusCode: res.statusCode,
+                        body: JSON.stringify('Lambda function does not have internet access.')
+                    });
+                }
+            });
+        }).on('error', (e: Error) => {
+            reject({
+                statusCode: 500,
+                body: JSON.stringify(`Error: ${e.message}`)
+            });
+        });
+    });
+};
+
+// Lambda Handler Function
+export const handler: APIGatewayProxyHandler = async (event, context) => {
+    
+        
+        if (config.singleShot) {
+            await main();
+        } else {
+            // In AWS Lambda, we would typically schedule a CloudWatch event to trigger this.
+            // This is just for local testing. In a production environment, you'd use CloudWatch Events or another scheduler.
+            lotry {gger.info("Scheduler functionality is not supported in Lambda. Please use a scheduled event.");
+        }
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Execution completed successfully' }),
+        };
+    } catch (error) {
+        logger.error('Error:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: 'Internal Server Error' }),
+        };
+    }
+};
+
+*/
+//if (config.singleShot)
+//{
+//    main().then();
+//}
+//else
+//{
+    //const schedule = `*/${config.linkUpTimeInterval} * * * *`;
+    //logger.info("Starting cron schedule: " + schedule)
+    //cron.schedule(schedule, () =>
+    //{
+    //    main().then()
+    //}, {});
+//}
+
+
+export async function main(): Promise<void>
 {
     if (!hasValidAuthentication())
     {
@@ -276,9 +355,9 @@ export async function getLibreLinkUpConnection(): Promise<string | null>
     }
 }
 
-const nightscoutClient = config.nightscoutApiV3
-    ? new ClientV3(config)
-    : new ClientV1(config);
+const nightscoutClient = new ClientV1(config); //config.nightscoutApiV3
+    //? new ClientV3(config)
+    //: new ClientV1(config);
 
 export async function createFormattedMeasurements(measurementData: GraphData): Promise<Entry[]>
 {

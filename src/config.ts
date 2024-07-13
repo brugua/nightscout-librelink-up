@@ -2,7 +2,7 @@ import {LLU_API_ENDPOINTS} from './constants/llu-api-endpoints';
 
 function readConfig()
 {
-    let requiredEnvs: string[] = [];
+    /*let requiredEnvs: string[] = [];
 
     if (!isTest())
     {
@@ -66,6 +66,30 @@ function readConfig()
 
         linkUpRegion: process.env.LINK_UP_REGION || 'EU',
         linkUpTimeInterval: Number(process.env.LINK_UP_TIME_INTERVAL) || 5,
+        linkUpConnection: process.env.LINK_UP_CONNECTION as string,
+    };
+    */
+
+    const protocol = 'https://';
+    const url = new URL(protocol + "nightscount-bruno.fly.dev");
+
+
+    return {
+        nightscoutApiToken: "7f1488d68c94fd9c732951b1dc0990b9b923985f",
+        nightscoutBaseUrl: url.toString(),
+        linkUpUsername: "bguarany@ons.org.br" as string,
+        linkUpPassword: "Senhadiabetes01" as string,
+
+        logLevel: 'info',
+        singleShot: 'true',
+	    allData: 'false',
+
+        nightscoutApiV3: 'false',
+        nightscoutDisableHttps: 'false',
+        nightscoutDevice: 'nightscout-librelink-up',
+
+        linkUpRegion: 'LA',
+        linkUpTimeInterval: 5,
         linkUpConnection: process.env.LINK_UP_CONNECTION as string,
     };
 }
