@@ -71,14 +71,14 @@ function readConfig()
     */
 
     const protocol = 'https://';
-    const url = new URL(protocol + "nightscount-bruno.fly.dev");
+    const url = new URL(protocol + "");
 
 
     return {
-        nightscoutApiToken: "7f1488d68c94fd9c732951b1dc0990b9b923985f",
+        nightscoutApiToken: "",
         nightscoutBaseUrl: url.toString(),
-        linkUpUsername: "bguarany@ons.org.br" as string,
-        linkUpPassword: "Senhadiabetes01" as string,
+        linkUpUsername: "" as string,
+        linkUpPassword: "" as string,
 
         logLevel: 'info',
         singleShot: 'true',
